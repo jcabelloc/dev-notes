@@ -230,3 +230,253 @@ public class LoggingAspect {
 }
 
 ```
+
+### Ordering Aspects
+
+* Step 1: Separate Advices in different Aspects
+* Step 2: Add @Order annotation
+
+```java
+// Create a utility class for Expressions
+@Aspect
+public class UtilAOPExpressions {
+
+	@Pointcut("execution(* edu.tamu.jcabelloc.springaopsample.dao.*.*(..))")
+	public void pointcutForDAOPackage() {}
+	
+	@Pointcut("execution(* edu.tamu.jcabelloc.springaopsample.dao.*.get*(..))")
+	public void getters() {}
+	
+	@Pointcut("execution(* edu.tamu.jcabelloc.springaopsample.dao.*.set*(..))")
+	public void setters() {}
+	
+	@Pointcut("pointcutForDAOPackage() && !(getters() || setters())")
+	public void forDAOPackageNoGetterNoSetter() {}
+
+}
+```
+
+```java
+// Separate Advives in Different Aspects
+// Add @Order Annotation... Order(1) how greater priority
+@Aspect
+@Component
+@Order(1)
+public class MyAuditAspect {
+	
+	@Before("edu.tamu.jcabelloc.springaopsample.aspect.UtilAOPExpressions.forDAOPackageNoGetterNoSetter()")
+	public void performAuditLogging() {
+		System.out.println("\n\n Performing Audit Logging ");
+	}
+}
+```
+```java
+@Aspect
+@Component
+@Order(2)
+public class MyAnalyticsAspect {
+
+	@Before("edu.tamu.jcabelloc.springaopsample.aspect.UtilAOPExpressions.forDAOPackageNoGetterNoSetter()")
+	public void logForAnalytics() {
+		System.out.println("\n\n Log For Analytics purposes");
+	}
+}
+```
+```java
+@Aspect
+@Component
+@Order(3)
+public class LoggingAspect {
+	@Before("edu.tamu.jcabelloc.springaopsample.aspect.UtilAOPExpressions.forDAOPackageNoGetterNoSetter()")
+	public void beforeMethodsInDAOPackageAdvice() {
+		System.out.println("\n\n Executing @Before advice on method");
+	}
+}
+```
+
+### JoinPoints
+How to read/access method parameters
+* Access and display Method Signature
+* Access and display Method Arguments
+
+```java
+@Aspect
+@Component
+public class LoggingAspect {
+
+	@Before("edu.tamu.jcabelloc.springaopsample.aspect.UtilAOPExpressions.forDAOPackageNoGetterNoSetter()")
+	public void beforeMethodsInDAOPackageAdvice(JoinPoint myJoinPoint) {
+		System.out.println("\n\n Executing @Before advice on method");
+		
+		//Displaying Method's Signature and Arguments
+		MethodSignature signature = (MethodSignature)myJoinPoint.getSignature();
+		System.out.println("Method Signature: " + signature);
+		
+		Object[] args = myJoinPoint.getArgs();
+		for (Object anArg: args) {
+			System.out.println(anArg);
+		}
+	}
+```
+
+### @AfterReturning Advice
+Typical use cases are: Logging, security, transactions, audit logging AND Post-Processing Data
+
+```java
+// Add a new method to Advice
+@Component
+public class BankAccountDAO {
+	
+	private String accountNumber;
+	private BigDecimal balance; 
+	
+	public void deposit(double amount) {
+		System.out.println(getClass() + " Doing deposit to the Bank Account..."); 
+	}
+	
+	public String toString() {
+		System.out.println(getClass() + " Doing toString in the Bank Account...");		
+		return getClass().toString();
+ 
+	}
+	// New Method to Advice by @AfterReturning
+	public List<BankAccount> findBankAccounts(){
+		List<BankAccount> bankAccounts = new ArrayList<>();
+		
+		BankAccount bankAccount1 = new BankAccount("123","vip");
+		BankAccount bankAccount2 = new BankAccount("234","platinum");
+		BankAccount bankAccount3 = new BankAccount("345","gold");
+		
+		bankAccounts.add(bankAccount1);
+		bankAccounts.add(bankAccount2);
+		bankAccounts.add(bankAccount3);
+		
+		return bankAccounts;
+	}
+	//...
+}
+```
+```java
+// New Advice using @AfterReturning
+@Aspect
+@Component
+@Order(3)
+public class LoggingAspect {
+	
+	// The magic is here!
+	@AfterReturning(
+			pointcut="execution(* edu.tamu.jcabelloc.springaopsample.dao.BankAccountDAO.findBankAccounts(..))",
+			returning="resultData")
+	public void afterReturningFindBankAccounts(JoinPoint myJoinPoint, List<BankAccount> resultData) {
+		
+		String method = myJoinPoint.getSignature().toString();
+		System.out.println("\n\n----- Executing @AfterReturning on Method: " + method);
+		
+		System.out.println("\n\n----- The result data is: " + resultData);
+	}
+	//...
+}
+```
+### @AfterReturning Advice - Modify Result Data before Delivering to the calling program
+
+```java
+@Aspect
+@Component
+@Order(3)
+public class LoggingAspect {
+	
+	@AfterReturning(
+			pointcut="execution(* edu.tamu.jcabelloc.springaopsample.dao.BankAccountDAO.findBankAccounts(..))",
+			returning="resultData")
+	public void afterReturningFindBankAccounts(JoinPoint myJoinPoint, List<BankAccount> resultData) {
+		
+		String method = myJoinPoint.getSignature().toString();
+		System.out.println("\n\n----- Executing @AfterReturning on Method: " + method);
+		
+		System.out.println("\n\n----- The result data is: " + resultData);
+		
+		// Modifying the data before delivering to the calling program
+		convertProductNamesToUpperCase(resultData);
+
+		System.out.println("\n\n----- The NEW result data is: " + resultData);
+
+	}
+	
+	private void convertProductNamesToUpperCase(List<BankAccount> resultData) {
+		for (BankAccount anAccount: resultData) {
+			String productUpperName = anAccount.getProduct().toUpperCase();
+			anAccount.setProduct(productUpperName);
+		}
+	}
+	//...
+}
+```
+
+### @AfterThrowing Advice
+
+Some use cases are: Log the Exception, Auditing on the Exception, Notify DevOps team.
+Note: The exception is still propagated to the calling program
+
+```java
+// Simulate our DAO class emit an Exception
+@Component
+public class BankAccountDAO {
+	
+	private String accountNumber;
+	private BigDecimal balance; 
+	
+	public void deposit(double amount) {
+		System.out.println(getClass() + " Doing deposit to the Bank Account..."); 
+	}
+	
+	public String toString() {
+		System.out.println(getClass() + " Doing toString in the Bank Account...");		
+		return getClass().toString();
+ 
+	}
+	// Changes Here!
+	public List<BankAccount> findBankAccounts(boolean flagException){
+		
+		// simulating the exception
+		if (flagException) {
+			throw new RuntimeException("Simulated Exception");
+		}
+		
+		List<BankAccount> bankAccounts = new ArrayList<>();
+		
+		BankAccount bankAccount1 = new BankAccount("123","vip");
+		BankAccount bankAccount2 = new BankAccount("234","platinum");
+		BankAccount bankAccount3 = new BankAccount("345","gold");
+		
+		bankAccounts.add(bankAccount1);
+		bankAccounts.add(bankAccount2);
+		bankAccounts.add(bankAccount3);
+		
+		return bankAccounts;
+	} 
+	// ...	
+}
+
+```
+```java
+// Add the @AfterThrowing annotation
+@Aspect
+@Component
+public class LoggingAspect {
+	
+	// The Magic is Here!
+	@AfterThrowing(
+			pointcut="execution(* edu.tamu.jcabelloc.springaopsample.dao.BankAccountDAO.findBankAccounts(..))",
+			throwing="finderException")
+	public void afterThrowingFindBankAccounts(JoinPoint myJoinPoint, Throwable finderException) {
+		
+		String method = myJoinPoint.getSignature().toString();
+		
+		System.out.println("\n\n----- Executing @AfterThrowing on Method: " + method);
+		
+		System.out.println("\n\n----- The Advice Exception is: " + finderException);
+	}
+	//...
+}
+
+```
