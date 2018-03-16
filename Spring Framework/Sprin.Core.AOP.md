@@ -480,3 +480,169 @@ public class LoggingAspect {
 }
 
 ```
+
+### @After Advice
+Common use cases: Log the exception, auditing, some code to run regardles of method outcome
+```java
+// Adding @After annotation 
+@Aspect
+@Component
+public class LoggingAspect {
+	
+	// The Magic is here! 
+	@After("execution(* edu.tamu.jcabelloc.springaopsample.dao.BankAccountDAO.findBankAccounts(..))")
+	public void afterFinallyFindBankAccounts(JoinPoint myJoinPoint) {
+		
+		String method = myJoinPoint.getSignature().toString();
+		System.out.println("\n\n----- Executing @After on Method: " + method);
+	}
+	//...	
+}
+```
+
+### @Around Advice
+* Runs before and After Method Execution
+* Most common use cases: logging, auditing, security, pre-procession and post-processing data
+* Also for: Instrumentation and profiling code (How long takes a section of code) and managing exceptions
+
+
+```java
+// Create a class to simulate a Service
+@Component
+public class ExchangeRateService {
+	
+	public String getRate() {
+		
+		try {
+			TimeUnit.SECONDS.sleep(3);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return "3.26";
+	}
+}
+```
+```java
+// Add an @Around annotation
+@Aspect
+@Component
+public class LoggingAspect {
+	
+	// The magic is here!
+	@Around("execution(* edu.tamu.jcabelloc.springaopsample.service.*.getRate(..))")
+	public Object aroundGetRate(ProceedingJoinPoint myProceedingJoinPoint) throws Throwable{
+		
+		String method = myProceedingJoinPoint.getSignature().toString();
+		System.out.println("\n\n----- Executing @Around on Method: " + method);
+		
+		long start = System.currentTimeMillis();
+		
+		Object result = myProceedingJoinPoint.proceed();
+		
+		long finish = System.currentTimeMillis();
+		
+		long duration = finish - start;
+		
+		System.out.println("\n\n------------- Duration: " + duration/1000 + " seconds");
+		
+		return result;
+	}
+	//...
+}
+```
+
+### @Around Advice - Handling Exceptions
+
+```java
+// Simulate the service throw an Exception
+@Component
+public class ExchangeRateService {
+	
+	public String getRate() {
+		try {
+			TimeUnit.SECONDS.sleep(3);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return "3.26";
+	}
+	// Here the change!
+	public String getRate(boolean flagException) {
+		
+		if (flagException) {
+			throw new RuntimeException("Service Unavailable!!!");
+		}
+		return getRate();
+	}
+}
+```
+
+```java
+// Then modify the ASpect to Handle de Exception
+@Aspect
+@Component
+public class LoggingAspect {
+
+	@Around("execution(* edu.tamu.jcabelloc.springaopsample.service.*.getRate(..))")
+	public Object aroundGetRate(ProceedingJoinPoint myProceedingJoinPoint) throws Throwable{
+		
+		String method = myProceedingJoinPoint.getSignature().toString();
+		System.out.println("\n\n----- Executing @Around on Method: " + method);
+		
+		long start = System.currentTimeMillis();
+		
+		Object result = null;
+		// Here the change!. Handling and hiding the Exception
+		try {
+			result = myProceedingJoinPoint.proceed();
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			result = "rate: not Available";
+		}
+		
+		long finish = System.currentTimeMillis();
+		
+		long duration = finish - start;
+		
+		System.out.println("\n\n------------- Duration: " + duration/1000 + " seconds");
+		
+		return result;
+	}
+	//...
+}
+```
+### @Around Advice - Rethrowing the Exception
+
+```java
+@Aspect
+@Component
+public class LoggingAspect {
+	
+	@Around("execution(* edu.tamu.jcabelloc.springaopsample.service.*.getRate(..))")
+	public Object aroundGetRate(ProceedingJoinPoint myProceedingJoinPoint) throws Throwable{
+		
+		String method = myProceedingJoinPoint.getSignature().toString();
+		System.out.println("\n\n----- Executing @Around on Method: " + method);
+		
+		long start = System.currentTimeMillis();
+		
+		Object result = null;
+		
+		try {
+			result = myProceedingJoinPoint.proceed();
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			throw e;
+		}
+		
+		long finish = System.currentTimeMillis();
+		
+		long duration = finish - start;
+		
+		System.out.println("\n\n------------- Duration: " + duration/1000 + " seconds");
+		
+		return result;
+	}
+	//...
+}
+```
