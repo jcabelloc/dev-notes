@@ -19,3 +19,18 @@ Connect to MongoDB
 C:\Program Files\MongoDB\Server\3.4\bin\mongo.exe
 ```
 
+### First Basic Commands
+
+```
+show dbs;
+use college;
+db.student.insert({name:"Jhon", major:"CS" });
+db.student.insert({name:"Mary", major:"MIS" });
+db.student.find();
+db.student.find({name:"Mary"});
+db.student.insert({name:"Jack", major:"MIS" });
+db.student.find({major:"MIS"});
+db.student.update({name:"Jack"}, {$set:{name:"Phil", resident: true}});
+db.student.remove({resident:true});
+```
+

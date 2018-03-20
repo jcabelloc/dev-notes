@@ -101,6 +101,13 @@ app.use(express.static("public"));
 // ...
 ```
 
+In case we add bootstrap, we just need to add the link reference
+```html -ejs
+    <head>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+```
+
 ### Refers to views without "ejs" extension
 Update the app.js file, including the following instruction
 ```javascript
