@@ -11,6 +11,7 @@ Run a file with node
 node <filename.js>
 ```
 
+## Mongoose for MongoDB Interaction
 
 ### Adding Mongoose for MongoDB Interaction
 
@@ -84,3 +85,17 @@ Student.find({}, function(err, students){
     }
 });
 ```
+
+### findById method
+```javascript
+app.get("/students/:id", function(req, res){
+    Campground.findById(req.params.id, function(err, foundStudent){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("show", {student: foundStudent});
+        }
+    });
+});
+```
+

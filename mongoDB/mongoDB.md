@@ -32,5 +32,7 @@ db.student.insert({name:"Jack", major:"MIS" });
 db.student.find({major:"MIS"});
 db.student.update({name:"Jack"}, {$set:{name:"Phil", resident: true}});
 db.student.remove({resident:true});
+
+db.campgrounds.drop();
 ```
 

@@ -300,3 +300,15 @@ app.listen(3000, function(){
 </ul>
 <a href="/">Search Again</a>
 ```
+
+### Restful routes
+
+name    url             verb        desc
+=====================================================
+INDEX   /students           GET     Display a list of all students
+NEW     /students/new       GET     Display Form to make a new student
+CREATE  /students           POST    Add a new student
+SHOW    /students/:id       GET     Shows info about one student
+EDIT    /students/:id/edit  GET     Show Edit Form for one Student
+UPDATE  /students/:id       PUT     Update a Student, then redirect somewhere
+DESTROY /students/:id       DELETE  Delete a student, then redirect somewhere
