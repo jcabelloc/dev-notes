@@ -301,14 +301,22 @@ app.listen(3000, function(){
 <a href="/">Search Again</a>
 ```
 
-### Restful routes
+### Restful Routes
 
-name    url             verb        desc
-=====================================================
-INDEX   /students           GET     Display a list of all students
-NEW     /students/new       GET     Display Form to make a new student
-CREATE  /students           POST    Add a new student
-SHOW    /students/:id       GET     Shows info about one student
-EDIT    /students/:id/edit  GET     Show Edit Form for one Student
-UPDATE  /students/:id       PUT     Update a Student, then redirect somewhere
-DESTROY /students/:id       DELETE  Delete a student, then redirect somewhere
+name    |   url             | verb  | Mongoose Method            | Desc
+--------|-------------------|-------|----------------------------|--------------------------------
+INDEX   | /students         | GET   | Student.find()             | Display a list of all students
+NEW     | /students/new     | GET   | N/A                        | Display Form to make a new student
+CREATE  | /students         | POST  | Student.create()           | Add a new student
+SHOW    | /students/:id     | GET   | Student.findById()         | Show info about one student
+EDIT    | /students/:id/edit| GET   | Student.findById()         | Show Edit Form for one Student
+UPDATE  | /students/:id     | PUT   | Student.findByIdAndUpdate()| Update a Student, then redirect 
+DESTROY | /students/:id     | DELETE| Student.findByIdAndRemove()| Delete a student, then redirect 
+
+### Nested Routes
+
+name    |   url                  | verb  | Mongoose Method            | Desc
+--------|------------------------|-------|----------------------------|--------------------------------
+NEW     | /post/:id/comments/new | GET   | N/A                        | Display Form 
+CREATE  | /post/:id/comments     | POST  | Comment.create()           | Add a new comment
+
