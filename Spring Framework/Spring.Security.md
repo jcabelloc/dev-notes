@@ -278,3 +278,171 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			</div>
 		</c:if>
 ```
+
+## Cross Site Request Forgery (CSRF)
+
+### Manually adding CSRF
+First chage <form:form> tag by <form> tag
+Then add tokens manually inside the form
+```jsp
+		<!-- Adding tokens manually... -->
+		<input type="hidden"
+			name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+
+```
+
+
+## Showing User and Roles
+
+### Step 1: Update POM File for Spring Security JSP Tag Library (pom.xml)
+```xml
+	<!-- Add Spring Security Taglibs support -->
+  	<dependency>
+    	<groupId>org.springframework.security</groupId>
+    	<artifactId>spring-security-taglibs</artifactId>
+    	<version>${springsecurity.version}</version>
+	</dependency>
+```
+
+### Step 2: Add Spring JSP Tag Library to JSP Page
+```jsp
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+```
+### Step 3: Display User ID and Display User Roles
+```jsp
+	<p> 
+		User: <security:authentication property="principal.username"/>
+		<br><br>
+		Role(s): <security:authentication property="principal.authorities"/>
+		
+	</p>
+```
+
+
+## Restricting Access based on Roles
+
+### Step 1: Create Supporting Controller code and View pages
+```java
+@Controller
+public class SampleController {
+	//...	
+	@GetMapping("/leaders")
+	public String showLeaders() {
+		return "leaders";
+	}
+	
+	@GetMapping("/systems")
+	public String showSystems() {
+		return "systems";
+	}
+}
+```
+### Step 2: Update User Roles
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		
+		@SuppressWarnings("deprecation")
+		UserBuilder users = User.withDefaultPasswordEncoder();
+		auth.inMemoryAuthentication()
+			.withUser(users.username("jhon").password("123").roles("employee"));
+		
+		auth.inMemoryAuthentication()
+			.withUser(users.username("jack").password("123").roles("employee", "manager"));
+		
+		auth.inMemoryAuthentication()
+			.withUser(users.username("cindy").password("123").roles("employee", "admin"));
+	}
+	//...
+}
+```
+
+### Step 3: Restricting Access to Roles using antMatchers
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	//...
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		
+		http.authorizeRequests()
+			.antMatchers("/").hasRole("employee")
+			.antMatchers("/leaders/**").hasRole("manager")
+			.antMatchers("/systems/**").hasRole("admin")
+			.and()
+			.formLogin()
+				.loginPage("/loginPage")
+				.loginProcessingUrl("/authenticator")
+				.permitAll()
+			.and()
+			.logout().permitAll();
+		
+	}
+}
+```
+
+
+
+## Configure Custom page access denied
+
+### Add support for an Access Denied Page Handler
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	//...
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		
+		http.authorizeRequests()
+			.antMatchers("/").hasRole("employee")
+			.antMatchers("/leaders/**").hasRole("manager")
+			.antMatchers("/systems/**").hasRole("admin")
+			.and()
+			.formLogin()
+				.loginPage("/loginPage")
+				.loginProcessingUrl("/authenticator")
+				.permitAll()
+			.and()
+			.logout().permitAll()
+			// THe magic is here
+			.and()
+			.exceptionHandling().accessDeniedPage("/access-denied");
+	}
+}
+```
+### Configure the controller
+```java
+@Controller
+public class LoginController {
+	//...	
+	@GetMapping("/access-denied")
+	public String showAccessDenied() {
+		return "access-denied";
+	}
+}
+
+```
+
+## Show content based on Roles
+### Edit the jsp file
+```jsp
+	<security:authorize access="hasRole('manager')">
+		<p>
+			<a href="${pageContext.request.contextPath}/leaders">Leadership Option</a>
+		</p>		
+	</security:authorize>
+
+	<security:authorize access="hasRole('admin')">
+		<p>
+			<a href="${pageContext.request.contextPath}/systems">Systems Admin</a>
+		</p>		
+	</security:authorize>
+```
+
