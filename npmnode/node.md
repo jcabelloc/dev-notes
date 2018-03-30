@@ -419,3 +419,80 @@ Post.create({
 });
 //...
 ```
+
+## Authorization
+Just the authenticated user and owner can edit his/her posts(whatever)
+
+### Create a MiddleWare (see the use of Back)
+``` javascript
+//...
+function checkPostOwnership(req, res, next){
+    if (req.isAuthenticated()){
+        Post.findById(req.params.id, function(err, foundPost){
+            if(err){
+                res.redirect("/back");
+            } else {
+                if(foundPost.author.id.equals(req.user._id)) {
+                    next();
+                } else {
+                    res.redirect("back");
+                }
+            }
+        });
+    } else {
+        res.redirect("back");
+    }
+}
+//...
+```
+
+### Alter the routes
+```javascript
+//...
+// Edit Post Route
+router.get("/:id/edit", checkPostOwnership, function(req, res){
+    Post.findById(req.params.id, function(err, foundPost){
+        if(err){
+            res.redirect("/post");
+        } else {
+            res.render("posts/edit", {post: foundPost});
+        }
+    });
+});
+
+// Update Post Route
+router.put("/:id", checkPostOwnership, function(req, res){
+    Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, updatedPost){
+        if(err){
+            res.redirect("/posts");
+        } else {
+            res.redirect("/posts/" + req.params.id);
+        }
+    });
+});
+
+// Destroy Post Route
+router.delete("/:id", checkPostOwnership, function(req, res){
+    Post.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            res.redirect("/posts");
+        } else {
+            res.redirect("/posts");
+        }
+    });
+});
+
+//...
+```
+
+### Hide conveniently the Edit and Delete Button
+```html ejs
+
+    <% if(currentUser && post.author.id.equals(currentUser._id)){ %>
+        <a class="btn btn-warning btn-sm" href="/posts/<%= post._id %>/edit">Edit</a>
+        <form class="float-left mr-1" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger btn-sm">Delete</button>
+        </form>
+    <% }%>
+
+```
