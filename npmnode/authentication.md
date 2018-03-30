@@ -161,3 +161,11 @@ function isLoggedIn(req, res, next){
 };
 //...
 ```
+
+### Middleware to pass the current user to all templates (app.js)
+```javascript
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+});
+```
