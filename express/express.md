@@ -320,3 +320,16 @@ name    |   url                  | verb  | Mongoose Method            | Desc
 NEW     | /post/:id/comments/new | GET   | N/A                        | Display Form 
 CREATE  | /post/:id/comments     | POST  | Comment.create()           | Add a new comment
 
+## Environment Variables
+### Add an environment variable
+```bash
+export DATABASEURL=mongodb://localhost/myDB
+```
+### Use that environment variable (i.e app.js)
+```javascript
+//...
+const DBURL = process.env.DATABASEURL || "mongodb://localhost/myDB";
+//...
+mongoose.connect(DBURL);
+//...
+```
