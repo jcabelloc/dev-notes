@@ -16,7 +16,7 @@ node <filename.js>
 ### Adding Mongoose for MongoDB Interaction
 
 ```bash
-node install mongoose
+npm install mongoose
 ```
 
 ```javascript
