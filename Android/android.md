@@ -262,3 +262,89 @@ Grant permission in the AndroidManifest.xml
     }
     //...
 ```
+
+
+### Local Notifications
+
+```java
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, intent, 0);
+
+        Notification notification = new Notification.Builder(getApplicationContext())
+                .setContentTitle("Class Starting")
+                .setContentText("Today is an exam day, be prepared...")
+                .setContentIntent(pendingIntent)
+                .addAction(android.R.drawable.sym_action_chat, "Chat", pendingIntent)
+                .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                .build();
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        notificationManager.notify(1, notification);
+
+    }
+}
+```
+
+
+### Multi Screen Mode
+
+* Create a project with API Support >= 24 version
+
+* Modify the AndroidManifest.xml like this
+```xml
+    <application
+        android:resizeableActivity="true" 
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"
+            android:supportsPictureInPicture="true">
+            <layout
+                android:defaultHeight="500dp"
+                android:gravity="top"
+                android:minWidth="300dp"
+                />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+```
+
+* Code the ManinActivity.java
+```java
+public class MainActivity extends AppCompatActivity {
+    @Override
+    public void onMultiWindowModeChanged(boolean isInMultiWindowMode, Configuration newConfig) {
+        super.onMultiWindowModeChanged(isInMultiWindowMode, newConfig);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        if (isInMultiWindowMode()){
+
+        }
+
+        if (isInPictureInPictureMode()){
+
+        }
+    }
+}
+```
+

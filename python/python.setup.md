@@ -50,3 +50,8 @@ conda info --envs
 ```bash
 conda install numpy
 ```
+
+* Install Pandas
+```bash
+conda install pandas
+```

@@ -28,6 +28,12 @@ setInterval(function(){
 }, 1000);
 ```
 
+### Arrow Functions
+```javascript
+var multiply = (a, b) => { return a * b };
+```
+
+
 ## Arrays
 ### ForEach
 ```javascript

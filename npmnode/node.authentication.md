@@ -32,7 +32,7 @@ var express                 = require("express"),
     passport                = require("passport"),
     bodyParser              = require("body-parser"),
     User                    = require("./models/user"),
-    localStrategy           = require("passport-local"),
+    LocalStrategy           = require("passport-local"),
     passportLocalMongoose   = require("passport-local-mongoose");
 
 mongoose.connect("mongodb://localhost/auth_demo_app");
@@ -40,15 +40,19 @@ mongoose.connect("mongodb://localhost/auth_demo_app");
 var app = express();
 app.set("view engine", "ejs");
 
+//Enabling session support is optional, though it is recommended for most applications
 app.use(require("express-session")({
     secret: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
     resave: false,
     saveUninitialized: false
 }));
 
+// In a Express-based app, passport.initialize() middleware is required to initialize Passport
 app.use(passport.initialize());
+// If the app uses persistent login sessions, passport.session() middleware must also be used
 app.use(passport.session());
 
+//  To support login sessions, Passport will serialize and deserialize user instances to and from the session.
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -85,7 +89,7 @@ app.post("/register", function(req, res){
     User.register(new User({username: req.body.username}), req.body.password, function(err, user){
         if(err){
             console.log(err);
-            return res.render("register");
+            return res.redirect("/register");
         }
         passport.authenticate("local")(req, res, function(){
             res.redirect("/secret");
