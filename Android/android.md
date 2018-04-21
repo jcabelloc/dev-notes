@@ -264,6 +264,105 @@ Grant permission in the AndroidManifest.xml
 ```
 
 
+### Processing JSON Data
+```java
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        DownloadTask task = new DownloadTask();
+        task.execute("http://api.openweathermap.org/data/2.5/weather?q=tokyo,jp&appid=THE_API_ID"+ );
+    }
+    public class DownloadTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            String result = "";
+            URL url;
+            HttpURLConnection urlConnection = null;
+            try {
+                url = new URL(urls[0]);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = urlConnection.getInputStream();
+                InputStreamReader reader = new InputStreamReader(inputStream);
+                int data = reader.read();
+                while (data!=-1) {
+                    char current = (char)data;
+                    result += current;
+                    data = reader.read();
+                }
+                return result;
+
+            } catch (MalformedURLException e | IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        /* Result Example
+            {
+                "coord": {
+                    "lon": 139.76,
+                    "lat": 35.68
+                },
+                "weather": [
+                    {
+                        "id": 501,
+                        "main": "Rain",
+                        "description": "moderate rain",
+                        "icon": "10n"
+                    },
+                    {
+                        "id": 701,
+                        "main": "Mist",
+                        "description": "mist",
+                        "icon": "50n"
+                    },
+                    {
+                        "id": 741,
+                        "main": "Fog",
+                        "description": "fog",
+                        "icon": "50n"
+                    }
+                ]
+            }
+        */
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                String weatherInfo = jsonObject.getString("weather");
+                Log.i("Weather Content: ", weatherInfo);
+                JSONArray arr = new JSONArray(weatherInfo);
+                for (int i=0; i< arr.length(); i++){
+                    JSONObject jsonPart = arr.getJSONObject(i);
+                    Log.i("main", jsonPart.getString("main"));
+                    Log.i("description", jsonPart.getString("description"));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+### Encode String to URL format (In case names contain spaces i.e "San Francisco")
+``` java
+        String encodedCityName = URLEncoder.encode(cityNameEditText.getText().toString(), "UTF-8");
+        DownloadTask task = new DownloadTask();
+        String result = task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + encodedCityName + "&appid=THE_API_ID").get();
+
+```
+
+### Hide Keyboard (After an event)
+```java
+    InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+    mgr.hideSoftInputFromWindow(cityNameEditText.getWindowToken(), 0);
+```
+
+
+
 ### Local Notifications
 
 ```java
@@ -324,7 +423,7 @@ public class MainActivity extends AppCompatActivity {
     </application>
 ```
 
-* Code the ManinActivity.java
+* Code in the ManinActivity.java
 ```java
 public class MainActivity extends AppCompatActivity {
     @Override

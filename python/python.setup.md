@@ -17,16 +17,16 @@ jupyter notebook
 ### Virtual Environments with Conda
 * Create a virtual env
 ```bash
-conda create --name myenv
+conda create --name firstEnv
 ```
 * Create a virtual env with a package
 ```bash
-conda create -n myenv scipy
+conda create -n firstEnv scipy
 ```
 
 * Create a virtual env with a particular python version and a package
 ```
-conda create -n myenv python=3.4
+conda create -n firstEnv python=3.4
 ```
 
 * Activate the environment
@@ -54,4 +54,23 @@ conda install numpy
 * Install Pandas
 ```bash
 conda install pandas
+```
+
+### Libraries for Data Input and Output
+```bash
+conda install sqlalchemy
+conda install lxml
+conda install html5lib
+conda install BeautifulSoup4
+```
+
+
+### Matplotlib
+```bash
+conda install matplotlib
+```
+
+### Seaborn
+```bash
+conda install seaborn
 ```
