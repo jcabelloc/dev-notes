@@ -76,8 +76,12 @@ conda install seaborn
 ```
 
 ### Plotly and cufflinks
-These libraries are not currently available through conda but are available through pip
 ```bash
-pip install plotly
+conda install plotly
+```
+
+Cufflinks is not currently available through conda but it is available through pip
+```bash
 pip install cufflinks
 ```
+
