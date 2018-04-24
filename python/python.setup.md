@@ -85,3 +85,8 @@ Cufflinks is not currently available through conda but it is available through p
 pip install cufflinks
 ```
 
+
+### Package for Machine Learning
+```bash
+conda install scikit-learn
+```
