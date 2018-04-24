@@ -268,7 +268,7 @@ sns.pairplot(USAhousing)
 
 
 
-![png](.//img/output_10_1.png)
+![png](./img/output_10_1.png)
 
 
 
@@ -284,7 +284,7 @@ sns.distplot(USAhousing['Price'])
 
 
 
-![png](.//img/output_11_1.png)
+![png](./img/output_11_1.png)
 
 
 
@@ -300,7 +300,7 @@ sns.heatmap(USAhousing.corr())
 
 
 
-![png](.//img/output_12_1.png)
+![png](./img/output_12_1.png)
 
 
 ## Training a Linear Regression Model
@@ -450,7 +450,7 @@ plt.scatter(y_test,predictions)
 
 
 
-![png](.//img/output_29_1.png)
+![png](./img/output_29_1.png)
 
 
 **Residual Histogram**
@@ -461,7 +461,7 @@ sns.distplot((y_test-predictions),bins=50);
 ```
 
 
-![png](.//img/output_31_0.png)
+![png](./img/output_31_0.png)
 
 
 ## Regression Evaluation Metrics
