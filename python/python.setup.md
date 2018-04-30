@@ -90,3 +90,8 @@ pip install cufflinks
 ```bash
 conda install scikit-learn
 ```
+
+### Natural Language Text Processing Kit
+```bash
+conda install nltk
+```
