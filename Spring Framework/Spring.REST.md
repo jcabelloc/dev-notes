@@ -135,3 +135,166 @@ public class FirstRestController {
 </project>
 ```
 
+### Add Support for JSP
+```xml
+<!-- Add Support for JSP... get rid of Eclipse Error -->
+<dependency>
+	<groupId>javax.servlet.jsp</groupId>
+	<artifactId>javax.servlet.jsp-api</artifactId>
+	<version>2.3.1</version>
+</dependency>
+```
+
+### Using @PathVariable for REST calls
+```java
+	//...
+	@GetMapping("/students/{studentId}")
+	public Student getStudent(@PathVariable int studentId) {
+		return students.get(studentId);
+	}
+	//...
+```
+
+
+## Exception handling
+
+### Create a custom error response class
+```java
+public class StudentErrorResponse {
+	
+	private int status;
+	private String message;
+	private long timeStamp;
+	
+	public StudentErrorResponse() {
+		
+	}
+
+	public StudentErrorResponse(int status, String message, long timeStamp) {
+		super();
+		this.status = status;
+		this.message = message;
+		this.timeStamp = timeStamp;
+	}
+	// getters and setters...
+```
+
+
+### Create a custom exception class
+```java
+public class StudentNotFoundException extends RuntimeException {
+
+	public StudentNotFoundException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public StudentNotFoundException(String message) {
+		super(message);
+	}
+
+	public StudentNotFoundException(Throwable cause) {
+		super(cause);
+	}
+}
+```
+
+### Update REST service to throw exception if student not found
+```java
+//...
+	@GetMapping("/students/{studentId}")
+	public Student getStudent(@PathVariable int studentId) {
+		
+		if ((studentId >= students.size()) || (studentId < 0)) {
+			throw new StudentNotFoundException("Student id not found: " + studentId);
+		}
+		return students.get(studentId);
+	}
+//...
+```
+
+
+### Add an exception handler method using @Exception Handler
+```java
+// In the REST Controller Class
+//...
+	@ExceptionHandler
+	public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException exc) {
+		
+		StudentErrorResponse error = new StudentErrorResponse();
+		error.setStatus(HttpStatus.NOT_FOUND.value());
+		error.setMessage(exc.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
+
+//...
+```
+
+### Add a Generic Exception
+```java
+// In the REST Controller Class
+	//...
+	// To catch any exception
+	@ExceptionHandler
+	public ResponseEntity<StudentErrorResponse> handleException(Exception exc) {
+		
+		StudentErrorResponse error = new StudentErrorResponse();
+		error.setStatus(HttpStatus.BAD_REQUEST.value());
+		error.setMessage(exc.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+		
+	}
+```
+
+## Global Exception Handling
+* Promote reuse
+* Centralize exception handling
+* @ControllerAdvice is similar to an interceptor/filter
+  * Pre-process requests to controllers
+  * Post-process responses to handle exceptions
+  * Ideal for global exception handling
+
+### Create new @ControllerAdvice
+```java
+@ControllerAdvice
+public class StudentRestExceptionHandler {
+	
+
+}
+```
+
+### Refactor REST service (remove old exception handling code)
+
+
+### Add exception handling code to @ControllerAdvice
+```java
+@ControllerAdvice
+public class StudentRestExceptionHandler {
+	
+	@ExceptionHandler
+	public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException exc) {
+		
+		StudentErrorResponse error = new StudentErrorResponse();
+		error.setStatus(HttpStatus.NOT_FOUND.value());
+		error.setMessage(exc.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
+	// To catch any exception
+	@ExceptionHandler
+	public ResponseEntity<StudentErrorResponse> handleException(Exception exc) {
+		
+		StudentErrorResponse error = new StudentErrorResponse();
+		error.setStatus(HttpStatus.BAD_REQUEST.value());
+		error.setMessage(exc.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+		
+	}
+	
+}
+```
+
+
+
