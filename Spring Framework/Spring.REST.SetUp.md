@@ -25,8 +25,8 @@
 
 ```xml
   <properties>
-	<springframework.version>5.0.7.RELEASE</springframework.version>
-	<hibernate.version>5.2.17.Final</hibernate.version>
+	<springframework.version>5.0.6.RELEASE</springframework.version>
+	<hibernate.version>5.2.16.Final</hibernate.version>
 	<mysql.connector.version>5.1.45</mysql.connector.version>
 	<c3po.version>0.9.5.2</c3po.version>
 
@@ -288,5 +288,5 @@ connection.pool.maxIdleTime=3000
 #
 hibernate.dialect=org.hibernate.dialect.MySQLDialect
 hibernate.show_sql=true
-hibernate.packagesToScan=com.luv2code.springdemo.entity
+hibernate.packagesToScan=edu.tamu.jcabelloc.springfullrestappdemo.entity
 ```
