@@ -29,3 +29,7 @@ npm init
 npm install express --save
 ```
 
+### View Package Info
+```bash
+npm view bootstrap | less
+```
