@@ -13,7 +13,7 @@ npm install -g @angular/cli@latest
 ```bash
 node -v
 npm -v
-ng-v
+ng -v
 ```
 * npm modules are located at: C:\Users\jcabelloc\AppData\Roaming\npm\node_modules
 
