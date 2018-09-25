@@ -59,3 +59,17 @@ cloud_sql_proxy -instances=quickstart01-216321:southamerica-east1:ayni=tcp:3307
 * Solution: Go to Google Cloud Platform and ADD a database flag: log_bin_trust_function_creators=on
 
 
+## Granting access to App Engine
+* IMPORTANT: It is valid if the app engine and the SQL DB are in different projects. In our case not. 
+* Based on: https://cloud.google.com/appengine/docs/standard/java/cloud-sql/using-cloud-sql-mysql
+
+### Identify the service account associated with your App Engine application
+* demo01-216401@appspot.gserviceaccount.com
+
+### 
+* Go to the IAM & Admin Projects page in the Google Cloud Platform Console.
+* Select the project that contains the Cloud SQL instance: quickstart01
+* Search for the service account name: demo01-216401@appspot.gserviceaccount.com
+* If the service account is already there, and it has a role that includes the cloudsql.instances.connect permission, you can proceed to Setting up.
+* The Cloud SQL Client, Cloud SQL Editor and Cloud SQL Admin roles all provide the necessary permission, as do the legacy Editor and Owner project roles.
+* Otherwise, add the service account by clicking Add.

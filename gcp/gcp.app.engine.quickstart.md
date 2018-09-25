@@ -24,7 +24,7 @@ gcloud components update
 ### Install Maven, check: C:\jcabelloc\Notes\DevNotes\maven\maven.md, (Section: To Install Maven as independent Tool,)
 
 
-### SHow installed components
+### Show installed components
 ```bash
 gcloud components list
 ```
@@ -53,4 +53,9 @@ mvn appengine:deploy
 ### Launch your browser and view the app at http://YOUR_PROJECT_ID.appspot.com,
 ```bash
 gcloud app browse
+```
+
+### You can stream logs from the command line by running:
+```bash
+gcloud app logs tail -s default
 ```
