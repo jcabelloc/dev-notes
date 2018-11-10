@@ -56,6 +56,12 @@ conda install numpy
 conda install pandas
 ```
 
+### List Linked packages
+```bash
+conda list
+```
+
+
 ### Libraries for Data Input and Output
 ```bash
 conda install sqlalchemy
