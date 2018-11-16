@@ -44,6 +44,19 @@ deactivate
 conda info --envs
 ```
 
+### Conda common commands
+* Check out conda version
+```
+> conda -V
+```
+
+* Update conda and then all packages
+```
+> conda update -n root conda
+> conda update --all
+```
+
+
 
 ### Install Packages
 * Install NumPy
