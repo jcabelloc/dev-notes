@@ -1,4 +1,4 @@
-# Recurrent python tips
+# Recurrent python notes
 
 ``` python
 # type of an object
