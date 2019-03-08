@@ -3,7 +3,7 @@
 ## Set up tools
 * Install NodeJS (it includes npm)
 * Install Visual Studio Code
-* Install Git Bash (https://git-scm.com)
+* Install Git (includes Git Bash) (https://git-scm.com)
 * Integrate terminal into Visual Studio Code (https://code.visualstudio.com/docs/editor/integrated-terminal)
 * Install Angular CLI:
 ```bash
@@ -23,6 +23,14 @@ ng -v
 ```bash
 ng new demoapp
 ```
+
+* Consider the two following answers
+
+? Would you like to add Angular routing? (y/N) y
+
+? Which stylesheet format would you like to use? (Use arrow keys)
+> CSS    (.css )
+
 * Serve the app
 ```bash
 ng serve --open
