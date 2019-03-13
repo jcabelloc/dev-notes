@@ -8,10 +8,10 @@
 * Follow these steps at https://cloud.google.com/sdk/docs/quickstart-windows
 * Selected path: C:\Users\jcabelloc\AppData\Local\Google\Cloud SDK
 * After installing, login is required
-* Then, it is required to select one of the projects, after select one, we have
+* Then, it is required to select one of the projects, after selecting one, we have
 ```
-* Commands that require authentication will use jcabelloc@gmail.com b
-* Commands will reference project `adm-team6` by default
+* Commands that require authentication will use jcabelloc@gmail.com
+* Commands will reference project `ayni-desa` by default
 Run `gcloud help config` to learn how to change individual settings
 ```
 
@@ -19,7 +19,7 @@ Run `gcloud help config` to learn how to change individual settings
 ```
 gcloud --help
 ```
-* Som other handy commands
+* Some other handy commands
 ```
 gcloud auth list
 gcloud config list
@@ -35,4 +35,4 @@ gcloud help
 
 
 
-https://cloud.google.com/appengine/docs/standard/java/
+https://cloud.google.com/eclipse/docs/quickstart

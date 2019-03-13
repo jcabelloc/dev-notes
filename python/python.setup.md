@@ -1,7 +1,10 @@
 # Python Basic Notes
 
 ### Install Python and Jupyter 
-*  Install Python and Jupyter using the Anaconda Distribution: https://www.anaconda.com/download/#windows
+*  Install Anaconda Distribution: https://www.anaconda.com/distribution/. It includes python and jupyter notebook by default
+* Selected installation path: C:\jcabelloc\Programs\Anaconda3
+
+* Check the getting started guide: http://docs.anaconda.com/anaconda/user-guide/getting-started/
 
 * Open the Anaconda Prompt (Terminal)
 * Change Directory (cd) to your desired location
