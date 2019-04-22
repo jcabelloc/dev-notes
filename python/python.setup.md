@@ -117,3 +117,29 @@ conda install scikit-learn
 ```bash
 conda install nltk
 ```
+
+### Package graphviz
+```bash
+conda install graphviz
+```
+
+
+### Package lightgbm 
+```bash
+conda install lightgbm
+```
+
+
+### Package featuretools
+```bash
+pip install featuretools
+```
+
+
+
+### Package Tensorflow
+* First update numpy
+```bash
+conda install numpy=1.16
+pip install tensorflow
+```
