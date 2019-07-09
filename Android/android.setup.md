@@ -8,7 +8,7 @@
 * Deactivate "Hiper-V" on Windows Features(Control Panel)
 * This deactivation causes docker fails
 
-### Install Intel x86 Emulator Accelerator (HAXM installer)
+### Install Intel x86 Emulator Accelerator (HAXM installer) from Android Studio
 ```
 Preparing "Install Intel x86 Emulator Accelerator (HAXM installer) (revision: 7.5.1)".
 Downloading https://dl.google.com/android/repository/extras/intel/haxm-windows_v7_5_1.zip

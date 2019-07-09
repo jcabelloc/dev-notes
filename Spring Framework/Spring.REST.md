@@ -9,8 +9,8 @@
 
 ### Step 0: Create a maven project
 
-* In Eclipse create a Maven Project
-* Select the maven-archetype-webapp
+* In Eclipse create a  Project
+* Select the -archetype-webapp
   * GroupID: edu.tamu.jcabelloc
   * ArtifactID: spring-rest-demo
 * Delete All Content inside src/main/webapp

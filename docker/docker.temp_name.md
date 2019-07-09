@@ -1,6 +1,6 @@
 # Docker Notes
 
-* Reference: https://gist.github.com/bradtraversy/89fad226dc058a41b596d586022a9bd3
+* Reference: https://git.github.com/bradtraversy/89fad226dc058a41b596d586022a9bd3
 
 ## Installation steps
 * Download Docker for windows
@@ -34,7 +34,7 @@ docker images
 docker image rm 2bc
 docker images
 docker ps
-dokcer ps -a
+docker ps -a
 ```
 
 * Pull an image

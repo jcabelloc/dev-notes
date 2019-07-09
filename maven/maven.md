@@ -79,8 +79,8 @@ Modify the pom.xml file
 
 ## To Install Maven as independent Tool, follow steps at: https://maven.apache.org/install.html
 
-* download file: apache-maven-3.5.4-bin.zip
-* unzip apache-maven-3.5.4-bin.zip
+* download file: apache-maven-3.6.1-bin.zip
+* unzip apache-maven-3.6.1-bin.zip
 * Ensure JAVA_HOME environment variable is set and points to your JDK installation
 * In windows: "System Properties", “Advanced” tab, and the “Environment Variables” button, add JAVA_HOME to the location of your JDK, e.g. C:\Program Files\Java\jdk1.8.0_172
 * Test that, 
@@ -89,7 +89,7 @@ echo %JAVA_HOME%
 C:\Program Files\Java\jdk1.8.0_172
 ```
 
-* Add the bin directory of the created directory apache-maven-3.5.4 to the PATH environment variable
+* Add the bin directory of the created directory apache-maven-3.6.1 to the PATH environment variable
 * Confirm with mvn -v in a new shell. The result should look similar to ...
 
 
@@ -113,3 +113,4 @@ mvn package
 ```bash
 java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
 ```
+
