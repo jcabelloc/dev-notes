@@ -104,3 +104,10 @@ public class JavaConfigCollegeApp {
 
 ### Injecting values from a propery file
 
+```java
+...
+	@Value("${foo.email}")
+	private String email;
+...
+
+```

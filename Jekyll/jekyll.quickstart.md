@@ -19,3 +19,9 @@ bundle exec jekyll serve
 ```
 * Now browse to http://localhost:4000
 
+### Add Google Analytics to the web site (jcabelloc.github.io)
+* Add the following line to the _config.yml file
+```
+# Google Analytics
+google_analytics: UA—XXXXXXXX-X
+```
