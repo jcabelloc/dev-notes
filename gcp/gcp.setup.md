@@ -37,3 +37,8 @@ gcloud help
 
 https://cloud.google.com/eclipse/docs/quickstart
 
+### Run gcloud on Git Bash (add .cmd)
+```bash
+gcloud.cmd --help
+
+```
