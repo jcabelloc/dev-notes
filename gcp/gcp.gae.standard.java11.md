@@ -53,7 +53,7 @@ mvn clean package appengine:deploy -Dapp.deploy.projectId=YOUR_PROJECT_ID
 gcloud app browse
 ```
 
-## Connect to a Google Cloud MYSQL DB from a java application using JDBC
+## Connect to a Google Cloud MYSQL DB from a local java application using JDBC
 * Reference: https://github.com/GoogleCloudPlatform/cloud-sql-jdbc-socket-factory
 
 ### Activate credentials
