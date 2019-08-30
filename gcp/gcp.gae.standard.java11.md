@@ -28,12 +28,12 @@ gcloud components install app-engine-java
 ### Add a maven dependency to pom.xml
 ```xml
             <plugin>
-            <groupId>com.google.cloud.tools</groupId>
-            <artifactId>appengine-maven-plugin</artifactId>
-            <version>2.1.0</version>
-            <configuration>
-                <version>springboot-helloworld</version>
-            </configuration>
+              <groupId>com.google.cloud.tools</groupId>
+              <artifactId>appengine-maven-plugin</artifactId>
+              <version>2.1.0</version>
+              <configuration>
+                  <version>springboot-helloworld</version>
+              </configuration>
             </plugin>
 ```
 ### Creating the app.yaml file
