@@ -31,3 +31,11 @@ Running Intel® HAXM installer
 Intel HAXM installed successfully!
 Done
 ```
+
+
+### More about emulator and Hyper-v
+* HYPER-V COMPATIBLE ANDROID EMULATOR NOW AVAILABLE
+https://www.itwriting.com/blog/10977-hyper-v-compatible-android-emulator-now-available.html
+
+* Configuring VM acceleration
+https://developer.android.com/studio/run/emulator-acceleration#accel-vm

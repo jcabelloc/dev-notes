@@ -1,7 +1,7 @@
 # Jasper Report Notes
 
 ### Install JasperSoft Studio
-* Download and unzip file: TIB_js-studiocomm_6.9.0_windows_x86_64.zip
+* Download and unzip file: TIB_js-studiocomm_6.10.0_windows_x86_64.zip
 
 ### Add mysql jdbc driver
 * download or obtain from maven repository: mysql-connector-java-8.0.17.jar

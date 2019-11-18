@@ -122,3 +122,19 @@ docker ps
 ```cmd
 docker push jcabelloc/nginx-website
 ```
+
+* Inspect a container
+```cmd
+docker inspect nombre_container
+
+```
+
+* Run a container in the background -d (--detach)
+```cmd
+docker container run -d -t ubuntu:18.04
+```
+
+* Fetch the logs of a container
+```cmd
+docker logs e17674bba528
+```
