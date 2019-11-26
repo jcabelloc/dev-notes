@@ -138,3 +138,16 @@ docker container run -d -t ubuntu:18.04
 ```cmd
 docker logs e17674bba528
 ```
+
+### Useful tips
+* Connect as a root
+```cmd
+docker container exec -u root -it jenkins /bin/bash
+```
+
+```cmd
+docker -H localhost:2375 info
+docker -H localhost:2375 ps -a
+```
+
+* Connect from a container to a its windows docker engine: docker.for.win.localhost:2375
