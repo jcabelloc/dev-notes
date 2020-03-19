@@ -31,13 +31,17 @@ sdk list java
 
 sdk install java 11.0.4-zulu
 sdk install java 8.0.222.hs-adpt
+sdk install java 8.0.242-open
 
 ```
 
 ### Set a default java version
 ```bash
 sdk use java 8.0.222.hs-adpt
+sdk use java java 8.0.242-open
+sdk current java
 sdk default java 11.0.4-zulu
+sdk default java 8.0.242-open
 echo $JAVA_HOME
 java -version
 ```
