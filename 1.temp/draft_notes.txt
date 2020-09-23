@@ -1,0 +1,380 @@
+Temas a instruir:
+- Logging
+- Exception handling
+
+
+Anotaciones:
+-
+
+
+
+
+
+
+
+1. PRs, ciclos cortos, feedback
+
+
+2. Dificultades tecnicas
+
+
+3. Protocolo de cierre de dia, feedback inmediato
+
+
+
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqY2FiZWxsb2MiLCJleHAiOjE1OTQ4OTQ2OTQsImlhdCI6MTU5NDg2NTg5NH0.i4OJ4XUHcl7oXc2QJez0b7yoKlsohBuscC1uOw6E7Va
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqY2FiZWxsb2MiLCJleHAiOjE1OTQ4OTQ2OTQsImlhdCI6MTU5NDg2NTg5NH0.ThRtPx935HZYS4aPolfLJILLBzOyv7sVGPmjWHc3KZg
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqY2FiZWxsb2MiLCJleHAiOjE1OTQ4OTQ2OTQsImlhdCI6MTU5NDg2NTg5NH0.i4OJ4XUHcl7oXc2QJez0b7yoKlsohBuscC1uOw6E7Vg
+
+
+firebase functions:config:set zoom.apikey="edp1zPxSS-2CwefUxtRbqQ" zoom.apisecret="fsE0InBuAEGud1D4Rfoyo9qvWnLizRTO8okr" zoom.email="jcabelloc@itana.pe"
+SAN JUAN DE MIRAFLORES
+
+Muchos que me conocen creen que siempre he trabajado en el sistema financiero... sabian que trabaje alrededor de 1 anio en el sector minero como jefe de sistemas. Una de las primeras cosas que priorice fue ir conocer el negocio, 4 dias...
+
+
+supongamos que tienes disponiblidad integrada (de todos los profes) de 8am a 12pm, que se ha formado con 4 profesores (A, B, C, D)
+Disponibilidad para el dia dd/mm/yy
+Chip-08 AM: A, D
+Chip-09 AM:  B, C
+Chip-10 AM:  A, B
+Chip-11 AM: A, B, C, D
+
+Casos:
+1- Si el alumno selecciona el Chip-08AM, entonces todos los siguientes chips se desactivan. Por los profesores A y D no tienen disponiblidad a las 9am. No importa ver mas alla de las 9am, porque la seleccion es continua
+2- Si el alumno selecciona el Chip-09AM, entonces los chips de 10AM y 11AM quedan activos porque existe al menos un profesor(en este caso B), que tiene disponiblidad a las 10am y 11AM. El chip 8AM se desactiva porque 8AM es pasado frente a las 9AM
+3- Si el alumno selecciona el Chip-10AM, entonces el chip 11AM queda activo porque existe al menos un profesor(en este caso B), que tiene disponiblidad a las 11AM. Los chips 8AM y 9AM se desactivan porque son pasado frente a las 10AM
+4- Si el alumno selecciona el Chip-11AM, los chips 8AM, 9AM y 10AM se desactivan porque son pasado frente a las 11AM
+
+Notas:
+1. En el caso 2, el alumno luego de seleccionar las 9AM, podra seleccionar el chip 10AM, y si gusta luego 11AM, entonces puede configurar una clase de 1 hora, 2 horas o 3 horas.
+1. En el caso 3, el alumno luego de seleccionar las 10AM, podra seleccionar el chip 11AM, entonces puede configurar una clase de 1 hora o 2 horas.
+
+Funcionalidades:
+- Un chip se selecciona o desselecciona haciendo "tap" sobre el.
+- La desseleccion de algun Chip, reinicia la seleccion de todos los chips, por un tema de simplicidad
+- Ya no seria necesario los botones "-" o "+"
+- Hay que consistenciar la selecciona de horas en Rapiclase, para que siga el mismo patron
+
+
+
+SAN JUAN DE LURIGANCHO
+
+Distribute Android apps to testers using the Firebase console
+https://firebase.google.com/docs/app-distribution/android/distribute-console?authuser=1
+
+
+
+firebase functions:config:set visa.user="integraciones.visanet@necomplus.com" visa.password="d5e7nk$M" visa.api="https://apitestenv.vnforapps.com/api.security/v1/security"
+
+
+
+[
+  {
+     nombre: "Clientes"
+     esOpcionMenu: true
+     opciones: []
+  },
+  {
+     nombre: "Neumaticos"
+     esOpcionMenu: false
+     opciones: [
+        { nombre: "Despacho" },
+        { nombre: "Maestro" },
+     ]
+  }
+  {
+    nombre: "Despacho"
+  },
+]
+
+{
+  idOpcion: 1001
+  nombre: "root"
+  opciones: [
+    {
+       idPadre: 1001
+       nombre: "Clientes"
+       esOpcionMenu: true
+       opciones: []
+    },
+    {
+       nombre: "Neumaticos"
+       esOpcionMenu: false
+       opciones: [
+          { nombre: "Despacho" },
+          { nombre: "Maestro" },
+       ]
+    }
+    {
+      nombre: "Despacho"
+    },
+  ]
+
+}
+
+
+
+572d986 (HEAD -> master, origin/master, origin/HEAD) Merged in feature/IWEB-11-mejorar-el-disenio-de-las-tarjet (pull request #12)
+cea67d5 IWEB-11 Se realizo mejoras en el tamanio de las tarjetas
+85493c0 Merged in feature/IWEB-12-mejorar-la-imagen-principal-de-l (pull request #11)
+8de3dea (origin/feature/IWEB-12-mejorar-la-imagen-principal-de-l, feature/IWEB-12-mejorar-la-imagen-principal-de-l) IWEB-12 Se realizaron mejoras en la imagen principal de la vista BlogDetailsPage
+7cb2eab Merged in feature/IWEB-10-redireccionar-a-la-parte-superio (pull request #10)
+4a6ff56 IWEB-10 Se agrego un parametro al RouterModule
+f491227 Merged in feature/IWEB-9-implementar-la-funcion-para-el-bo (pull request #9)
+05c7d1e (origin/feature/IWEB-9-implementar-la-funcion-para-el-bo, feature/IWEB-9-implementar-la-funcion-para-el-bo) IWEB-9 Se realizo la funcionalidad para el boton más posts
+d8f40c8 Merged in feature/IWEB-8-implementar-la-funcion-para-filtr (pull request #8)
+acddcf7 IWEB-8 Se realizo la funcionalidad para filtrar posts por categoria
+66f50f4 Merged in feature/IWEB-13-agregar-snackbar-para-mostrar-er (pull request #7)
+
+La finalidad de este articulo que nuevos interesados en Machine Learning se inicien de forma mas practica, digamos en un periodo de tres a cuatro meses.
+
+
+https://drive.google.com/file/d/1YY1Hga3GqOGQPHj3ctXysZIHMhR9shax/view
+
+
+https://drive.google.com/file/d/16ry1SBX-_pNqoIRsuYSMf_XUrF0rGPwe/view
+
+Roger Pecho
+
+
+
+
+D/mpfeapp:: nroOperacion: null
+2020-09-10 18:56:03.372 22496-22496/pe.itana.mpfeapp D/mpfeapp::
+ {"channel":"pagoefectivo",
+  "cip":2563192,
+  "cipUrl":"https://pre1a.payment.pagoefectivo.pe/07133655-C3B8-49A6-AFBE-9D5E64F178A2.html",
+  "email":"jcabelloc@gmail.com",
+  "expiryDate":"2020-09-12 23:59:59"}
+
+
+  2020-09-10 19:07:00.454 22496-22496/pe.itana.mpfeapp D/mpfeapp:: nroOperacion: null
+2020-09-10 19:07:28.131 22496-22496/pe.itana.mpfeapp D/mpfeapp:: 
+"header":
+   {"ecoreTransactionDate":1599782805597,
+   "ecoreTransactionUUID":"5bac20bd-d852-41b9-bcfa-f0b9569e6593",
+   "millis":9267},
+"order":
+   {"amount":20.0,
+   "authorizationCode":"184010",
+   "authorizedAmount":20.0,
+   "currency":"PEN",
+   "externalTransactionId":"10926789-a69f-440e-8a24-0aa3cac5d09f",
+   "installment":2,
+   "purchaseNumber":"15997826",
+   "traceNumber":"123210",
+   "transactionDate":"200910190645",
+   "transactionId":"993202540212772"}}
+
+{"dataMap": 
+   {"CURRENCY":"0604",
+   "TERMINAL":"00000001",
+   "TRANSACTION_DATE":"200910190645",
+   "ACTION_CODE":"000",
+   "TRACE_NUMBER":"123210",
+   "ECI_DESCRIPTION":"Transaccion no autenticada pero enviada en canal seguro",
+   "ECI":"07",
+   "SIGNATURE":"5bac20bd-d852-41b9-bcfa-f0b9569e6593","CARD":"491914******9067",
+   "MERCHANT":"100128038",
+   "BRAND":"visa",
+   "STATUS":"Authorized",
+   "INSTALLMENTS_INFO":"02000000000",
+   "ACTION_DESCRIPTION":"Aprobado y completado con exito",
+   "ADQUIRENTE":"570002",
+   "QUOTA_AMOUNT":"0.00",
+   "ID_UNICO":"993202540212772",
+   "AMOUNT":"20.00",
+   "PROCESS_CODE":"000000",
+   "QUOTA_NUMBER":"02",
+   "TRANSACTION_ID":"993202540212772",
+   "AUTHORIZATION_CODE":"184010",
+   "QUOTA_DEFERRED":"0"},
+
+
+
+nroOperacion: null
+2020-09-10 19:25:54.451 23169-23169/pe.itana.mpfeapp D/mpfeapp:: 
+{"dataMap":{"CURRENCY":"0604","TRANSACTION_DATE":"200910192549","TERMINAL":"00000001","ACTION_CODE":"000","TRACE_NUMBER":"123228",
+   "ECI_DESCRIPTION":"Transaccion no autenticada pero enviada en canal seguro","ECI":"07",
+   "SIGNATURE":"2eb7170c-6fc9-4557-af4b-eda85e35d8c3","BRAND":"visa","CARD":"444433******1111",
+   "MERCHANT":"100128038","STATUS":"Authorized","ADQUIRENTE":"570002",
+   "ACTION_DESCRIPTION":"Aprobado y completado con exito","ID_UNICO":"993202540212794","AMOUNT":"20.00",
+   "PROCESS_CODE":"000000","TRANSACTION_ID":"993202540212794","AUTHORIZATION_CODE":"185915"},
+"header":{"ecoreTransactionDate":1599783950210,"ecoreTransactionUUID":"2eb7170c-6fc9-4557-af4b-eda85e35d8c3",
+   "millis":7283},
+"order":{"amount":20.0,"authorizationCode":"185915",
+   "authorizedAmount":20.0,"currency":"PEN","externalTransactionId":"5534f4d3-0b1c-40f8-b530-653620ddfbee",
+   "installment":0,"purchaseNumber":"15997838","traceNumber":"123228","transactionDate":"200910192549","transactionId":"993202540212794"}}
+
+
+2020-09-10 19:28:18.070 23169-23169/pe.itana.mpfeapp D/mpfeapp:: purchaseNumber: 15997840
+2020-09-10 19:28:19.801 23169-23169/pe.itana.mpfeapp D/mpfeapp:: Se cancelo el proceso de pago con Visa
+2020-09-10 19:28:19.802 23169-23169/pe.itana.mpfeapp D/mpfeapp:: {"errorCode":400,"errorMessage":"Token has been used before","data":{}}
+
+
+
+2020-09-10 19:29:58.968 23169-23169/pe.itana.mpfeapp D/mpfeapp:: purchaseNumber: 15997841
+2020-09-10 19:30:56.002 23169-23169/pe.itana.mpfeapp D/mpfeapp:: Se cancelo el proceso de pago con Visa
+2020-09-10 19:30:56.003 23169-23169/pe.itana.mpfeapp D/mpfeapp:: 
+{
+"errorCode":400,"errorMessage":"REJECT",
+"header":{"ecoreTransactionUUID":"9adeeb79-0d8f-4c76-b390-d84dc216da1b","ecoreTransactionDate":1599784256774,"millis":127},
+"data":{"CURRENCY":"0604","TRANSACTION_DATE":"200910193056","ACTION_CODE":"670","STATUS":"Reject","ACTION_DESCRIPTION":"Operacion denegada",
+   "TRACE_NUMBER":"6548","AMOUNT":"20.0","ECI":"00","SIGNATURE":"0a8b09a0-aa6d-457e-9333-ebc58b41e9c7","CARD":"411111******1111","BRAND":"visa","MERCHANT":"100128038"}
+}
+
+
+
+/Users/jcabelloc/Library/Android/sdk/emulator
+./emulator -list-avds
+./emulator -avd Nexus_6_API_29 -timezone "America/Lima"
+./emulator -avd Pixel_2_API_29  -timezone "America/Lima"
+
+
+pagos
+
+{
+   "id"
+
+   "estado":
+   "tipo": "pagoefectivo / tarjeta"
+   "dataPE": {
+
+   }
+   "detallePagoTarjeta" : {
+      "header":
+      ""
+   }
+
+}
+
+
+DatosSimulacionPrestamo {
+   double monto;
+   plazo int;
+   double int;
+   ....
+}
+
+
+List<Cuota> buildCronograma(DatosSimulacionPrestamo datosSimulacionPrestamo) {
+
+
+
+
+}
+
+Double getMontoCuota(DatosSimulacionPrestamo datosSimulacionPrestamo) {
+
+
+}
+
+
+Double getInteresMensual(DatosSimulacionPlazoFijo datosSimulacionPlazoFijo) {
+
+   
+}
+
+Double getInteresTotal(DatosSimulacionPlazoFijo datosSimulacionPlazoFijo) {
+
+   
+}
+
+
+/* Este metodo devuelve: 
+[ 
+   {
+      "nombre": "Equipos"
+      "opciones": []
+   }
+   {
+      "nombre": "Neumaticos"
+      "opciones": [
+         { "nombre": "Despacho"}
+      ]
+   }
+]
+*/
+getOpcionesPorUsuario(usuario: String): Opcion[] {
+
+   // Obtener las opciones generales del sistema (*)
+
+
+   // 
+
+
+
+}
+
+(*)
+
+/* Este metodo devuelve: 
+[ 
+   {
+      "nombre": "Equipos"
+      "opciones": []
+   }
+   {
+      "nombre": "Inspecciones"
+      "opciones": []
+   }
+   {
+      "nombre": "Neumaticos"
+      "opciones": [
+         { "nombre": "Despacho"}
+         { "nombre": "Seguimiento"}
+      ]
+   }
+]
+*/
+
+findOpcionesRaizByCodUsuario
+
+Select  
+   Opcion
+from opcion opc, perfil per, usuario usu, usuario_perfil usp, opcion_perfil op
+WHERE usu.cod_usuario = 'COD_USUAIRO'
+AND usu.cod_usuario = usp.cod_usuario
+AND per.id_perfil = usp.id_perfil
+AND per.id_perfil = op.id_perfil
+AND per.cod_copion = op.cod_copion
+AND opc.esOpcionRaiz = TRUE"
+
+
+* Notas ...
+
+
+
+```
+docker run -it -e "SPRING_PROFILES_ACTIVE=desa-dockermac" -p 8081:8081 --name scr_app scr-core:0.0.1-SNAPSHOT
+
+```
+docker image rm jcabelloc/scr-core
+
+mvn clean
+mvn jasperreports:jasper
+mvn package spring-boot:repackage
+
+java -jar target/scr-core-0.0.1-SNAPSHOT.jar
+
+FROM openjdk:11.0.8-jre-slim
+FROM openjdk:11.0.8-slim
+
+FROM openjdk:11.0.8
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+
+docker build -t jcabelloc/scr-core .
+
+docker run -it -e "SPRING_PROFILES_ACTIVE=desa-dockermac" -p 8081:8081 --name scr-app jcabelloc/scr-core
+
+
+
+2020-09-19 17:55:19.674 ERROR 1 --- [nio-8081-exec-4] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/api] threw exception [Handler dispatch failed; nested exception is java.lang.UnsatisfiedLinkError: /usr/local/openjdk-11/lib/libfontmanager.so: libfreetype.so.6: cannot open shared object file: No such file or directory] with root cause
+
+java.lang.UnsatisfiedLinkError: /usr/local/openjdk-11/lib/libfontmanager.so: libfreetype.so.6: cannot open shared object file: No such file or directory
+	at java.base/java.lang.ClassLoader$NativeLibrary.load0(Native Method) ~[na:na]
+	at java.base/java.lang.ClassLoader$NativeLibrary.load(ClassLoader.java:2442) ~[na:na]

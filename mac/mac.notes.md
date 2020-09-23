@@ -34,5 +34,12 @@ ls -la /usr/local/bin/tree
 ```
 lsof -i :8081
 ```
+
+* Puertos RCP en LISTEN
+```
+lsof -PiTCP -sTCP:LISTEN
+```
+
 ### Shortcuts
 * Comentar una linea: Command + /
+* Mostrar Escritorio: F11
