@@ -43,3 +43,4 @@ lsof -PiTCP -sTCP:LISTEN
 ### Shortcuts
 * Comentar una linea: Command + /
 * Mostrar Escritorio: F11
+* Cambiar idioma del teclado: CTRL + ALT + SPACE

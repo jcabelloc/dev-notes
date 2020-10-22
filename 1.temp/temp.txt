@@ -1,0 +1,27 @@
+{'dataMap':{'CURRENCY':'0604','TRANSACTION_DATE':'200910192549','TERMINAL':'00000001','ACTION_CODE':'000','TRACE_NUMBER':'123228',
+   'ECI_DESCRIPTION':'Transaccion no autenticada pero enviada en canal seguro','ECI':'07',
+   'SIGNATURE':'2eb7170c-6fc9-4557-af4b-eda85e35d8c3','BRAND':'visa','CARD':'444433******1111',
+   'MERCHANT':'100128038','STATUS':'Authorized','ADQUIRENTE':'570002',
+   'ACTION_DESCRIPTION':'Aprobado y completado con exito','ID_UNICO':'993202540212794','AMOUNT':'20.00',
+   'PROCESS_CODE':'000000','TRANSACTION_ID':'993202540212794','AUTHORIZATION_CODE':'185915'},
+'header':{'ecoreTransactionDate':1599783950210,'ecoreTransactionUUID':'2eb7170c-6fc9-4557-af4b-eda85e35d8c3',
+   'millis':7283},
+'order':{'amount':20.0,'authorizationCode':'185915',
+   'authorizedAmount':20.0,'currency':'PEN','externalTransactionId':'5534f4d3-0b1c-40f8-b530-653620ddfbee',
+   'installment':0,'purchaseNumber':'15997838','traceNumber':'123228','transactionDate':'200910192549','transactionId':'993202540212794'}}
+
+
+   "{'dataMap':{'CURRENCY':'0604','TRANSACTION_DATE':'200910192549','TERMINAL':'00000001','ACTION_CODE':'000','TRACE_NUMBER':'123228', 'ECI_DESCRIPTION':'Transaccion no autenticada pero enviada en canal seguro','ECI':'07', 'SIGNATURE':'2eb7170c-6fc9-4557-af4b-eda85e35d8c3','BRAND':'visa','CARD':'444433******1111', 'MERCHANT':'100128038','STATUS':'Authorized','ADQUIRENTE':'570002', 'ACTION_DESCRIPTION':'Aprobado y completado con exito','ID_UNICO':'993202540212794','AMOUNT':'20.00', 'PROCESS_CODE':'000000','TRANSACTION_ID':'993202540212794','AUTHORIZATION_CODE':'185915'}, 'header':{'ecoreTransactionDate':1599783950210,'ecoreTransactionUUID':'2eb7170c-6fc9-4557-af4b-eda85e35d8c3', 'millis':7283}, 'order':{'amount':20.0,'authorizationCode':'185915', 'authorizedAmount':20.0,'currency':'PEN','externalTransactionId':'5534f4d3-0b1c-40f8-b530-653620ddfbee', 'installment':0,'purchaseNumber':'15997838','traceNumber':'123228','transactionDate':'200910192549','transactionId':'993202540212794'}}"
+
+
+   {"dataMap":{"CURRENCY":"0604","TRANSACTION_DATE":"200910192549","TERMINAL":"00000001","ACTION_CODE":"000","TRACE_NUMBER":"123228",
+   "ECI_DESCRIPTION":"Transaccion no autenticada pero enviada en canal seguro","ECI":"07",
+   "SIGNATURE":"2eb7170c-6fc9-4557-af4b-eda85e35d8c3","BRAND":"visa","CARD":"444433******1111",
+   "MERCHANT":"100128038","STATUS":"Authorized","ADQUIRENTE":"570002",
+   "ACTION_DESCRIPTION":"Aprobado y completado con exito","ID_UNICO":"993202540212794","AMOUNT":"20.00",
+   "PROCESS_CODE":"000000","TRANSACTION_ID":"993202540212794","AUTHORIZATION_CODE":"185915"},
+"header":{"ecoreTransactionDate":1599783950210,"ecoreTransactionUUID":"2eb7170c-6fc9-4557-af4b-eda85e35d8c3",
+   "millis":7283},
+"order":{"amount":20.0,"authorizationCode":"185915",
+   "authorizedAmount":20.0,"currency":"PEN","externalTransactionId":"5534f4d3-0b1c-40f8-b530-653620ddfbee",
+   "installment":0,"purchaseNumber":"15997838","traceNumber":"123228","transactionDate":"200910192549","transactionId":"993202540212794"}}

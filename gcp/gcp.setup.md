@@ -25,6 +25,22 @@ gcloud auth list
 gcloud config list
 gcloud info
 gcloud help
+
+
+gcloud projects list
+gcloud config get-value project
+gcloud config set account jcabelloc@itana.pe
+gcloud config set project scr-qa
+```
+
+* Ordenando las configuraciones
+```
+gcloud config configurations list
+gcloud config configurations activate default
+gcloud config configurations delete abc-123
+gcloud config configurations create jcabelloc
+gcloud config set account jcabelloc@gmail.com
+gcloud config set project cloudrun16-demo
 ```
 
 ### Set up Eclipse Environment

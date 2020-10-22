@@ -378,3 +378,86 @@ docker run -it -e "SPRING_PROFILES_ACTIVE=desa-dockermac" -p 8081:8081 --name sc
 java.lang.UnsatisfiedLinkError: /usr/local/openjdk-11/lib/libfontmanager.so: libfreetype.so.6: cannot open shared object file: No such file or directory
 	at java.base/java.lang.ClassLoader$NativeLibrary.load0(Native Method) ~[na:na]
 	at java.base/java.lang.ClassLoader$NativeLibrary.load(ClassLoader.java:2442) ~[na:na]
+
+
+De: no-reply@miprofepe.pe
+Asunto: Tienes una orden pendiente de pago (PagoEfectivo)
+
+Cuerpo:
+
+Hola Marco,
+
+Gracias por preferir MiProfePe. Para completar el pago de tu proxima clase:
+
+Curso: Razonamiento Matematico
+Dia: 2 de Octubre del 2020
+Hora: 10am
+Monto: S/ 25
+
+Se ha generado en PagoEfectivo, el siguiente  codigo CIP: 2568547. Sigue las instrucciones de pago en el siguiente enlace: 
+
+Enlace: https://pagoefectivo.pe/comprar-y-pagar.html
+
+Muchas Gracias,
+
+El equipo de MiProfePe
+
+
+
+Pantalla Luego del Pago
+Integraciones VisaNet10:11 AM
+=========================================
+Aprobada:
+Número de pedido
+Número de tarjeta enmascarada
+Fecha y hora del pedido
+Importe de la transacción
+Tipo de moneda
+Descripción de el/los productos(s)
+Términos y condiciones o link a la página
+Texto que indique al cliente que debe imprimir o guardar la información de la página de respuesta, o en su defecto habilitar una opción de impresión
+
+Denegada:
+Número de pedido
+Fecha y hora del pedido
+Descripción de la denegación
+
+============================
+
+
+
+
+mpp retornando mensaje satisfactorio desde iOS
+MPP message: DATA: Optional({
+    "ACTION_CODE" = 000;
+    "ACTION_DESCRIPTION" = "Aprobado y completado con exito";
+    ADQUIRENTE = 570009;
+    AMOUNT = "15.22";
+    "AUTHORIZATION_CODE" = 618581;
+    BRAND = visa;
+    CARD = "491914******9067";
+    "CARD_TYPE" = C;
+    CURRENCY = 0604;
+    ECI = 07;
+    "ECI_DESCRIPTION" = "Transaccion no autenticada pero enviada en canal seguro";
+    EMAIL = "jcabelloc@gmail.com";
+    "FIRST_NAME" = Juan;
+    "ID_UNICO" = 993202750236543;
+    "LAST_NAME" = Perez;
+    MERCHANT = 522591303;
+    "PROCESS_CODE" = 000000;
+    "PURCHASE_NUMBER" = 1790;
+    SIGNATURE = "2b23506b-d711-4bd4-855d-362e0aaaab5b";
+    STATUS = Authorized;
+    TERMINAL = 00000001;
+    "TRACE_NUMBER" = 160671;
+    "TRANSACTION_DATE" = 201001213148;
+    "TRANSACTION_ID" = 993202750236543;
+})
+
+MPP message: DATA: Optional(Canceled)
+finish presenting2
+
+
+MiProfePe(Alumno): https://play.google.com/apps/internaltest/4700631872202892047
+MiProfe(Profe): https://play.google.com/apps/internaltest/4699854996318844754
