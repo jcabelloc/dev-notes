@@ -33,6 +33,7 @@ ls -la /usr/local/bin/tree
 
 ```
 lsof -i :8081
+kill -9 ... 
 ```
 
 * Puertos RCP en LISTEN
@@ -44,3 +45,7 @@ lsof -PiTCP -sTCP:LISTEN
 * Comentar una linea: Command + /
 * Mostrar Escritorio: F11
 * Cambiar idioma del teclado: CTRL + ALT + SPACE
+* Forzar el Cierre de Aplicaciones: Command + Option + Esc.
+
+
+
